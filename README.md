@@ -3,7 +3,7 @@
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/9dafc565b3dd827ec2a4/maintainability)](https://codeclimate.com/github/dkalabukhov/frontend-project-11/maintainability)
 
-[![Node Status](https://github.com/dkalabukhov/frontend-project-11/actions/workflows/linter-check.yml/badge.svg)](https://github.com/dkalabukhov/frontend-project-11/actions/workflows/linter-check.yml)
+[![node CI](https://github.com/dkalabukhov/frontend-project-11/actions/workflows/linter-check.yml/badge.svg)](https://github.com/dkalabukhov/frontend-project-11/actions/workflows/linter-check.yml)
 
 ### Deployment
 Here is the link to <a href="https://frontend-project-11-pi-kohl.vercel.app/" target="_blank"> the deployed project </a>

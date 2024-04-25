@@ -1,4 +1,4 @@
 import './index.scss';
-import app from './app.js';
+import render from './init.js';
 
-app();
+render();

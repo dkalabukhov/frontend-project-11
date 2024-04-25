@@ -8,6 +8,7 @@ export default {
     readAllBtn: 'Reade More',
     closeModalBtn: 'Close',
     addBtn: 'Add',
+    successfullyLoaded: 'RSS has been loaded',
     errors: {
       required: 'This is a required field',
       invalid: 'Must be valid URL',

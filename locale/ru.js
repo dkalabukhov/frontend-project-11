@@ -8,6 +8,7 @@ export default {
     readAllBtn: 'Читать полностью',
     closeModalBtn: 'Закрыть',
     addBtn: 'Добавить',
+    successfullyLoaded: 'RSS успешно загружен',
     errors: {
       validation: {
         required: 'Это обязательное поле',

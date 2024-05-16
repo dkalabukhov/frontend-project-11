@@ -1,4 +1,5 @@
 import onChange from 'on-change';
+import { renderFeeds } from './rss.js';
 
 export default (elements, state, i18nextInstance) => {
   const watchedState = onChange(state, (path, value) => {
@@ -15,6 +16,10 @@ export default (elements, state, i18nextInstance) => {
           elements.feedback.classList.add('text-success');
           elements.feedback.classList.remove('text-danger');
         }
+        break;
+      }
+      case 'feeds': {
+        renderFeeds(watchedState, elements, i18nextInstance);
         break;
       }
       default: {

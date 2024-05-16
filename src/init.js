@@ -3,6 +3,7 @@ import i18n from 'i18next';
 import watch from './watchers.js';
 import resources from '../locale/index.js';
 import locale from '../locale/yupLocale.js';
+import getRss from './rss.js';
 
 export default () => {
   const state = {
@@ -11,9 +12,8 @@ export default () => {
       errors: [],
       status: 'filling',
     },
-    feed: {
-      urls: new Set(),
-    },
+    urls: new Set(),
+    feeds: [],
     language: 'en',
   };
 
@@ -31,6 +31,8 @@ export default () => {
     form: document.querySelector('form'),
     input: document.querySelector('#url-input'),
     feedback: document.querySelector('.feedback'),
+    posts: document.querySelector('.posts'),
+    feeds: document.querySelector('.feeds'),
     textNodes: {
       heading: document.querySelector('h1[class="display-3 mb-0"]'),
       subheading: document.querySelector('p[class="lead"]'),
@@ -54,14 +56,15 @@ export default () => {
 
   elements.form.addEventListener('submit', (e) => {
     e.preventDefault();
-    watchedState.form.value = elements.input.value;
-    schema.notOneOf(state.feed.urls)
+    watchedState.form.value = elements.input.value.trim();
+    schema.notOneOf(state.urls)
       .validate(watchedState.form.value)
       .then((value) => {
         watchedState.form.errors = [];
-        watchedState.feed.urls.add(value);
+        watchedState.urls.add(value);
         elements.form.reset();
         elements.input.focus();
+        getRss(watchedState.form.value, i18nextInstance, watchedState);
       })
       .catch((err) => {
         const messages = err.errors.map((error) => i18nextInstance.t(`errors.${error.key}`));

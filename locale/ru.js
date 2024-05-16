@@ -8,13 +8,15 @@ export default {
     readAllBtn: 'Читать полностью',
     closeModalBtn: 'Закрыть',
     addBtn: 'Добавить',
-    successfullyLoaded: 'RSS успешно загружен',
+    successfullyLoaded: 'RSS был успешно загружен',
+    posts: 'Посты',
+    feeds: 'Фиды',
+    preview: 'Просмотр',
     errors: {
-      validation: {
-        required: 'Это обязательное поле',
-        invalid: 'Ссылка должна быть валидным URL',
-        alreadyExists: 'RSS уже существует',
-      },
+      required: 'Это обязательное поле',
+      invalid: 'Ссылка должна быть валидным URL',
+      alreadyExists: 'RSS уже существует',
+      noData: 'Ресурс не содержит валидный RSS',
     },
   },
 };

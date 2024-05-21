@@ -3,7 +3,7 @@ import i18n from 'i18next';
 import watch from './watchers.js';
 import resources from '../locale/index.js';
 import locale from '../locale/yupLocale.js';
-import getRss from './rss.js';
+import getRss, { parseRss } from './rss.js';
 
 export default () => {
   const state = {
@@ -14,6 +14,7 @@ export default () => {
     },
     urls: new Set(),
     feeds: [],
+    posts: [],
     language: 'en',
   };
 
@@ -52,6 +53,28 @@ export default () => {
 
   loadTranslation();
 
+  const checkRssUpdates = (watchedState, time) => {
+    if (watchedState.feeds.length > 0) {
+      Array.from(watchedState.urls)
+        .map((url, i) => fetch(`https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(url)}`)
+          .then((response) => response.json())
+          .then((data) => {
+            const newPosts = parseRss(data).posts;
+            const postTitles = watchedState.posts[i].posts.map((post) => post.title);
+            const uniquePosts = newPosts.filter((newPost) => !postTitles.includes(newPost.title));
+            const updatedPosts = watchedState.posts.map((post, index) => {
+              if (index === i) {
+                return { ...post, posts: [...post.posts, ...uniquePosts] };
+              }
+              return post;
+            });
+            watchedState.posts = updatedPosts;
+          })
+          .catch((e) => console.log(e)));
+    }
+    setTimeout(() => checkRssUpdates(watchedState, time), time);
+  };
+
   const watchedState = watch(elements, state, i18nextInstance);
 
   elements.form.addEventListener('submit', (e) => {
@@ -73,4 +96,16 @@ export default () => {
   });
 
   elements.input.focus();
+
+  elements.input.addEventListener('invalid', (e) => {
+    if (e.target.value.length === 0) {
+      e.target.setCustomValidity(i18nextInstance.t('errors.required'));
+    }
+  });
+
+  elements.input.addEventListener('input', (e) => {
+    e.target.setCustomValidity('');
+  });
+
+  checkRssUpdates(watchedState, 5000);
 };

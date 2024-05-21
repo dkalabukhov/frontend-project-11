@@ -1,3 +1,5 @@
+let id = 1;
+
 const parseRss = (data) => {
   const parser = new DOMParser();
   const parsedData = parser.parseFromString(data.contents, 'application/xml');
@@ -23,7 +25,7 @@ const createCard = (i18nextInstance, type) => {
   return card;
 };
 
-export const renderFeeds = (watchedState, elements, i18nextInstance) => {
+const renderFeeds = (watchedState, elements, i18nextInstance) => {
   elements.posts.innerHTML = '';
   elements.feeds.innerHTML = '';
   const postsCard = createCard(i18nextInstance, 'posts');
@@ -46,13 +48,15 @@ export const renderFeeds = (watchedState, elements, i18nextInstance) => {
     feedsP.textContent = feed.description;
     feedsLi.append(feedsH3, feedsP);
     feedsUl.append(feedsLi);
+  });
 
-    feed.posts.forEach((post) => {
+  watchedState.posts.forEach((post) => {
+    post.posts.forEach((newPost) => {
       const li = document.createElement('li');
       li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
       const a = document.createElement('a');
       a.classList.add('fw-bold');
-      a.textContent = post.title;
+      a.textContent = newPost.title;
       const btn = document.createElement('button');
       btn.classList.add('btn', 'btn-outline-primary', 'btn-sm');
       btn.textContent = i18nextInstance.t('preview');
@@ -70,9 +74,14 @@ export default (link, i18nextInstance, watchedState) => {
     })
     .then((data) => {
       if (data.status.http_code === 404) throw new Error('noData');
-      watchedState.feeds.push(parseRss(data));
+      const { title, description, posts } = parseRss(data);
+      watchedState.feeds.push({ title, description, id });
+      watchedState.posts.push({ posts, id, readed: false });
+      id += 1;
     })
     .catch((err) => {
       watchedState.form.errors = [i18nextInstance.t(`errors.${err.message}`)];
     });
 };
+
+export { parseRss, renderFeeds };

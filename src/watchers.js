@@ -18,10 +18,6 @@ export default (elements, state, i18nextInstance) => {
         }
         break;
       }
-      // case 'feeds': {
-      //   renderFeeds(watchedState, elements, i18nextInstance);
-      //   break;
-      // }
       case 'posts': {
         renderFeeds(watchedState, elements, i18nextInstance);
         break;

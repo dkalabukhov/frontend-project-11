@@ -12,6 +12,7 @@ export default {
     posts: 'Посты',
     feeds: 'Фиды',
     preview: 'Просмотр',
+    modalBtnClose: 'Закрыть',
     errors: {
       required: 'Это обязательное поле',
       invalid: 'Ссылка должна быть валидным URL',

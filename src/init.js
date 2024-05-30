@@ -15,7 +15,7 @@ export default () => {
     urls: new Set(),
     feeds: [],
     posts: [],
-    language: 'en',
+    language: 'ru',
   };
 
   const i18nextInstance = i18n.createInstance();

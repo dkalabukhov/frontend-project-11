@@ -123,7 +123,7 @@ const renderFeeds = (watchedState, elements, i18nextInstance) => {
 };
 
 export default (link, i18nextInstance, watchedState) => {
-  fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(link)}`)
+  fetch(`https://allorigins.hexlet.app/get?disableCache=true&url=${encodeURIComponent(link)}`)
     .then((response) => {
       if (response.ok) return response.json();
       throw new Error('Failed to fetch');

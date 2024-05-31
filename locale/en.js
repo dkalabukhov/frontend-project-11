@@ -17,6 +17,7 @@ export default {
       invalid: 'Must be valid URL',
       alreadyExists: 'RSS already exists',
       noData: 'No valid RSS in the resource',
+      'Failed to fetch': 'Network error',
     },
   },
 };

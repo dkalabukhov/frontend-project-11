@@ -9,6 +9,9 @@ const parseRss = (data) => {
     href: post.querySelector('link').textContent,
     id: _.uniqueId(),
   }));
+  if (posts.length === 0) {
+    throw new Error('noData');
+  }
   const title = parsedData.querySelector('title').textContent;
   const description = parsedData.querySelector('description').textContent;
   return { title, description, posts };
@@ -126,7 +129,7 @@ export default (link, i18nextInstance, watchedState) => {
       throw new Error('Network response was not ok.');
     })
     .then((data) => {
-      if (data.status.http_code === 404) throw new Error('noData');
+      // if (data.status.http_code === 404) throw new Error('noData');
       const { title, description, posts } = parseRss(data);
       watchedState.feeds.push({ title, description });
       watchedState.posts = watchedState.posts.concat(posts);

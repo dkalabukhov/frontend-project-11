@@ -5,6 +5,7 @@ export default (elements, state, i18nextInstance) => {
   const watchedState = onChange(state, (path, value) => {
     switch (path) {
       case 'form.errors': {
+        console.log(path, value);
         if (watchedState.form.errors.length > 0) {
           elements.input.classList.add('is-invalid');
           [elements.feedback.textContent] = watchedState.form.errors;

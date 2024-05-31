@@ -4,8 +4,7 @@ import { renderFeeds } from './rss.js';
 export default (elements, state, i18nextInstance) => {
   const watchedState = onChange(state, (path, value) => {
     switch (path) {
-      case 'form.errors': {
-        console.log(path, value);
+      case 'form.errors':
         if (watchedState.form.errors.length > 0) {
           elements.input.classList.add('is-invalid');
           [elements.feedback.textContent] = watchedState.form.errors;
@@ -18,14 +17,11 @@ export default (elements, state, i18nextInstance) => {
           elements.feedback.classList.remove('text-danger');
         }
         break;
-      }
-      case 'posts': {
+      case 'posts':
         renderFeeds(watchedState, elements, i18nextInstance);
         break;
-      }
-      default: {
+      default:
         console.log(`Data: \n ${path} ${value}`);
-      }
     }
   });
 

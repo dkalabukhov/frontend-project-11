@@ -50,6 +50,7 @@ export default () => {
       closeModalBtn: document.querySelector('button[class="btn btn-secondary"]'),
       addBtn: document.querySelector('button[class="h-100 btn btn-lg btn-primary px-sm-5"]'),
       example: document.querySelector('p[class="mt-2 mb-0 text-muted"]'),
+      createdBy: document.querySelector('span[class="created-by"]'),
     },
   };
 

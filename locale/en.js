@@ -12,6 +12,7 @@ export default {
     feeds: 'Feeds',
     preview: 'Preview',
     modalBtnClose: 'Close',
+    createdBy: 'Created by',
     errors: {
       required: 'This is a required field',
       invalid: 'Must be valid URL',

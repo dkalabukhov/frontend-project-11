@@ -13,6 +13,7 @@ export default {
     feeds: 'Фиды',
     preview: 'Просмотр',
     modalBtnClose: 'Закрыть',
+    createdBy: 'Создатель проекта',
     errors: {
       required: 'Это обязательное поле',
       invalid: 'Ссылка должна быть валидным URL',

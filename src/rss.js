@@ -135,7 +135,7 @@ export default (link, i18nextInstance, watchedState) => {
       watchedState.posts = watchedState.posts.concat(posts);
     })
     .catch((err) => {
-      watchedState.form.errors = [i18nextInstance.t(`errors.${err.message}`)];
+      watchedState.form.error = i18nextInstance.t(`errors.${err.message}`);
     });
 };
 

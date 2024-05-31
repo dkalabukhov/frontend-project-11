@@ -10,7 +10,7 @@ export default () => {
   const state = {
     form: {
       value: '',
-      error: '',
+      errors: [],
       status: 'filling',
     },
     urls: new Set(),
@@ -88,7 +88,7 @@ export default () => {
     schema.notOneOf(state.urls)
       .validate(watchedState.form.value)
       .then((value) => {
-        watchedState.form.error = '';
+        watchedState.form.errors = [];
         watchedState.urls.add(value);
         elements.form.reset();
         elements.input.focus();
@@ -96,7 +96,7 @@ export default () => {
       })
       .catch((err) => {
         const messages = err.errors.map((error) => i18nextInstance.t(`errors.${error.key}`));
-        [watchedState.form.error] = messages;
+        watchedState.form.errors = messages;
       });
   });
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 import _ from 'lodash';
 
 const parseRss = (data) => {
@@ -88,7 +89,9 @@ const renderFeeds = (watchedState, elements, i18nextInstance) => {
     const li = document.createElement('li');
     li.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start', 'border-0', 'border-end-0');
     const a = document.createElement('a');
-    post.readed ? a.classList.add('fw-normal', 'link-secondary') : a.classList.add('fw-bold');
+    if (post.readed) {
+      a.classList.add('fw-normal', 'link-secondary');
+    } else a.classList.add('fw-bold');
     a.setAttribute('data-id', post.id);
     a.textContent = post.title;
     const btn = document.createElement('button');

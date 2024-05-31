@@ -124,10 +124,9 @@ const renderFeeds = (watchedState, elements, i18nextInstance) => {
 
 export default (link, i18nextInstance, watchedState) => {
   fetch(`https://allorigins.hexlet.app/get?url=${encodeURIComponent(link)}`)
-    .then((response) => {
-      if (response.ok) return response.json();
-      throw new Error('Network response was not ok.');
-    })
+    .then((response) => response.json())
+    // if (response.ok)
+    // throw new Error('Network response was not ok.');
     .then((data) => {
       // if (data.status.http_code === 404) throw new Error('noData');
       const { title, description, posts } = parseRss(data);

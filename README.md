@@ -15,4 +15,4 @@
 
 ### Demonstration
 
-[Deployed project]("https://frontend-project-11-pi-kohl.vercel.app/)
+[Deployed project](https://frontend-project-11-pi-kohl.vercel.app/)
